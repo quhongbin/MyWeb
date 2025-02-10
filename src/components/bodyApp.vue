@@ -27,12 +27,16 @@ export default{
     mounted(){
     },
     methods:{
-        handleFileUploaded(newContent){
+        handleFileUploaded(newContent,fileName){
             const md = new markdownIt();
             const newCC = md.render(newContent);
-            const newContent2 = '<div>'+  newCC   +'${this.tags.length + 1}</div>';
-            this.tags.push(newContent2);
-            this.$emit("addedContent");
+            // 增加一个div标签，用于显示新的内容
+            const fileContents = '<div>'+  newCC   +'${this.tags.length + 1}</div>';
+            // 将新的内容添加到tags数组中，并以文件名形式的变量名存储
+            this.tags.push(fileContents);
+            // this.$emit("addedContent");
+            console.log(fileName);
+            console.log(this.tags.length);
         },
         // printMarkdown(){
         //     console.log(this.tempText);
@@ -67,7 +71,7 @@ export default{
         <!-- 右边内容 -->
         <div class="bg-center">
             <div class="bg-center-content" >
-                <div v-for="(item, index) in tags" :key="index" @addedContent="addContent">
+                <div v-for="(item, index) in tags" :key="index">
                     <div>
                         {{ item }}
                     </div>
@@ -83,7 +87,7 @@ export default{
 </template>
 
 <style scoped>
-::-webkit-scrollbar{
+.bg-center-content>::-webkit-scrollbar{
     width: 2px; /* 设置滚动条宽度为0 */
     height: 10px; /* 设置滚动条高度为0 */
     background-color: #f5f5f5; /* 设置滚动条背景颜色 */

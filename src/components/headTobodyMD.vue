@@ -5,10 +5,11 @@ export default {
     methods: {
         uploadMarkdown(e){
             const file = e.target.files[0];
+            const fileName = e.target.files[0].name;
             if(file){
                 var reader = new FileReader();
                 reader.onload = (e) => {
-                    this.$emit("MarkdownContentToBody", e.target.result);
+                    this.$emit("MarkdownContentToBody", e.target.result, fileName);
                 };
                 reader.readAsText(file);
             };

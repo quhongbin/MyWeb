@@ -3,6 +3,7 @@ import headApp from "./components/headApp.vue";
 import bodyApp from "./components/bodyApp.vue";
 // import buttomApp from "./components/buttomApp.vue";
 import Footer from "./components/footerApp.vue";
+// import  APlayer  from "./components/aPlayer.vue";
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Footer from "./components/footerApp.vue";
 
     <headApp />
     <bodyApp />
+    <!-- <APlayer /> -->
     <Footer /> 
   </div>
 </template>
