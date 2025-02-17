@@ -1,6 +1,6 @@
 <script>
 import APlayer from 'aplayer';
-import "APlayer/dist/APlayer.min.css"; // 引入音乐插件的样式
+import "aplayer/dist/APlayer.min.css"; // 引入音乐插件的样式
 export default {
     data(){
         return{
