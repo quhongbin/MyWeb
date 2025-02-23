@@ -5,6 +5,7 @@ export default {
     data(){
         return{
             Markdowncontent: "",
+            BarsClass: true,
             audio: [
                 {
                     name:'第三人称',
@@ -40,6 +41,9 @@ export default {
                 
             });
         },
+        changeBarsClass(){
+            this.BarsClass = !this.BarsClass;
+        },
     },
 
     mounted(){
@@ -63,6 +67,14 @@ export default {
         <div class="nav__menu">
             <div id="aplayer">
 
+            </div>
+            <div class="navSelections">
+                <i @click="changeBarsClass" :class="{'fa-solid fa-bars':BarsClass,'navSelectionsMenu':!BarsClass}"></i>
+                <div class="navSelectionsMenu">
+                    <div><i class="fa-brands fa-github"></i>Github</div>
+                    <div><i class="fa-brands fa-bilibili"></i>Bilibili</div>
+                    <div><i class="fa-solid fa-envelope"></i>Email</div>
+                </div>
             </div>
         </div>
 
@@ -94,5 +106,20 @@ export default {
 i{
     font-size: 20px;
     margin:0px 5px 0px 5px;
+}
+@media screen and (max-width: 481px){
+    .nav_font{
+        display: none;
+    }
+    .fa-solid.fa-bars{
+        font-size: 50px;
+    }
+    /* 切换css样式 */
+    .navSelectionsMenu{
+        display: inline;
+        width: 50px;
+        height: 50px;
+        background-color: royalblue ;
+    } 
 }
 </style>
