@@ -1,6 +1,7 @@
 <script>
 import APlayer from 'aplayer';
 import "aplayer/dist/APlayer.min.css"; // 引入音乐插件的样式
+import popupApp from './popupApp.vue';
 export default {
     data(){
         return{
@@ -50,7 +51,7 @@ export default {
         this.initAplayer();
     },
     components:{
-
+        popupApp,
     },
 };                      
 </script>
@@ -71,9 +72,7 @@ export default {
             <div class="navSelections">
                 <i @click="changeBarsClass" :class="{'fa-solid fa-bars':BarsClass,'navSelectionsMenu':!BarsClass}"></i>
                 <div class="navSelectionsMenu">
-                    <div><i class="fa-brands fa-github"></i>Github</div>
-                    <div><i class="fa-brands fa-bilibili"></i>Bilibili</div>
-                    <div><i class="fa-solid fa-envelope"></i>Email</div>
+                    <popupApp></popupApp>
                 </div>
             </div>
         </div>

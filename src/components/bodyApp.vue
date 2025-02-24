@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 import markdownIt from "markdown-it";
 import headTobodyMD from "./headTobodyMD.vue";
 export default {
@@ -35,12 +36,16 @@ export default {
       // 将新的内容添加到tags数组中，并以文件名形式的变量名存储
       this.tags.push(fileContents);
       // this.$emit("addedContent");
+      this.getToServer();
       console.log(fileName);
       console.log(this.tags.length);
     },
-    // printMarkdown(){
-    //     console.log(this.tempText);
-    // },
+    // axios请求
+    getToServer() {
+      axios.post("http://localhost:3000/api",{name:"quhongbin",age:18})
+        .then((response) => console.log(response.data))
+        .catch((error) => console.log("Error:"+error));
+    },
     goToFooter() {
       this.$router.push("/Footer");
     },
