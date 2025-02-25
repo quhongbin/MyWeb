@@ -70,7 +70,7 @@ export default {
 
             </div>
             <div class="navSelections">
-                <i @click="changeBarsClass" :class="{'fa-solid fa-bars':BarsClass,'navSelectionsMenu':!BarsClass}"></i>
+                <i class="fa-solid fa-bars"></i>
                 <div class="navSelectionsMenu">
                     <popupApp></popupApp>
                 </div>
@@ -102,23 +102,50 @@ export default {
 .nav_font div{
     margin: 0px 10px 0px 10px;
 }
+.nav_font div:hover{
+    margin: 0px 10px 0px 10px;
+    transform:translate(0px,-5px);
+    transition: transform 0.5s;
+    text-decoration-line: underline;
+}
 i{
     font-size: 20px;
     margin:0px 5px 0px 5px;
 }
+.fa-solid.fa-bars{
+    display: none;
+    /* background-color: #fff; */
+}
+/* 切换css样式 */
+.navSelections{
+    /* display: flex; */
+    width: 50px;
+    height: 50px;
+    /* background-color: royalblue ; */
+} 
+.navSelectionsMenu{
+    display: none;
+}
+
 @media screen and (max-width: 481px){
     .nav_font{
         display: none;
     }
     .fa-solid.fa-bars{
         font-size: 50px;
-    }
-    /* 切换css样式 */
-    .navSelectionsMenu{
         display: inline;
-        width: 50px;
-        height: 50px;
-        background-color: royalblue ;
-    } 
+    }
+    .navSelectionsMenu{
+        display: none;
+    }
+    .fa-solid.fa-bars:hover{
+        /* border-radius: 50%; */
+        transform: rotate(90deg);
+        transition: transform 0.5s;
+    }
+    .fa-solid.fa-bars:hover ~ .navSelectionsMenu{
+        display: inline;
+        background-color: rgb(0, 0, 255);
+    }
 }
 </style>

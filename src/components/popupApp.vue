@@ -27,7 +27,6 @@ export default {
                 <i :class="item.icon"></i>
                 {{ item.name }}
             </div>
-            
         </div>
     </div>
 </template>
@@ -42,7 +41,7 @@ export default {
     background-color: rgba(245, 245, 245, 0.7);
 }
 .popup-menu-items{
-    display: none;
+    display: inline;
     justify-content: space-between;
     align-items: center;
     width: 100%;

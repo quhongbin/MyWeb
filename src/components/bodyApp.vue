@@ -5,7 +5,11 @@ import headTobodyMD from "./headTobodyMD.vue";
 export default {
   data() {
     return {
-      tempText: "",
+      tempText: {
+        name: "瞿红斌",
+        age:18,
+        jianjie: "这是一个简介",
+      },
       tags: [],
     };
   },
@@ -42,7 +46,7 @@ export default {
     },
     // axios请求
     getToServer() {
-      axios.post("http://localhost:3000/api",{name:"quhongbin",age:18})
+      axios.post("http://localhost:3000/api",this.tempText)
         .then((response) => console.log(response.data))
         .catch((error) => console.log("Error:"+error));
     },
@@ -64,7 +68,8 @@ export default {
           <img src="../assets/images/qq头像.jpg" width="50px" height="50px" />
         </div>
         <div>
-          瞿红斌
+          <span>姓名：</span>
+          <span>不知取啥</span>
         </div>
         <div>
           <span>简介：</span>
