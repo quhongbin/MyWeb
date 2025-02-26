@@ -1,12 +1,24 @@
 <script>
 import APlayer from 'aplayer';
 import "aplayer/dist/APlayer.min.css"; // 引入音乐插件的样式
-import popupApp from './popupApp.vue';
 export default {
     data(){
         return{
             Markdowncontent: "",
             BarsClass: true,
+            icons:[{
+                    name:'Github',
+                    icon:'fa-brands fa-github',
+                },
+                {
+                    name:'Bilibili',
+                    icon:'fa-brands fa-bilibili',
+                },
+                {
+                    name:'Email',
+                    icon:'fa-solid fa-envelope',
+                }
+            ],
             audio: [
                 {
                     name:'第三人称',
@@ -51,7 +63,6 @@ export default {
         this.initAplayer();
     },
     components:{
-        popupApp,
     },
 };                      
 </script>
@@ -60,10 +71,11 @@ export default {
         <div class="nav_logo">
             <img src="../assets/images/qq头像.jpg" alt="logo" width="50px" height="50px"/>
         </div>
-        <div class="nav_font">
-            <div><i class="fa-brands fa-github"></i>Github</div>
-            <div><i class="fa-brands fa-bilibili"></i>Bilibili</div>
-            <div><i class="fa-solid fa-envelope"></i>Email</div>
+        <div class="nav_font" v-for="icon in icons" :key="icon.name">
+            <div>
+                <i :class="icon.icon"></i>
+                {{ icon.name }}
+            </div>
         </div>
         <div class="nav__menu">
             <div id="aplayer">
@@ -71,12 +83,8 @@ export default {
             </div>
             <div class="navSelections">
                 <i class="fa-solid fa-bars"></i>
-                <div class="navSelectionsMenu">
-                    <popupApp></popupApp>
-                </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -95,37 +103,47 @@ export default {
 }
 .nav_font{
     display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center;
+    
     /* width: 200px; */
 }
 .nav_font div{
-    margin: 0px 10px 0px 10px;
+    margin: 0px 5px 0px 5px;
+    font-size: 16px;   
+    transition-property: font-size transform;
+    transition-duration: 1s;
 }
 .nav_font div:hover{
     margin: 0px 10px 0px 10px;
-    transform:translate(0px,-5px);
-    transition: transform 0.5s;
+    font-size: 36px;
+    transform:translate(0px,-10px);
+    transition:transform 0.5s;
     text-decoration-line: underline;
+    cursor: pointer;
 }
 i{
     font-size: 20px;
     margin:0px 5px 0px 5px;
 }
 .fa-solid.fa-bars{
-    display: none;
+    display: inline;
+    height: 10px;
+    transition: height;;
+    transition-duration: 0.5s;
     /* background-color: #fff; */
+}
+.fa-solid.fa-bars:focus ~ .navSelectionsMenu{
+    display: inline;
+    height: 30px;
+    transform: translate(0px, -10px);
+    transition: transform 0.5s;
+    background-color: rgb(0, 0, 255);
 }
 /* 切换css样式 */
 .navSelections{
-    /* display: flex; */
-    width: 50px;
-    height: 50px;
-    /* background-color: royalblue ; */
 } 
-.navSelectionsMenu{
-    display: none;
-}
 
 @media screen and (max-width: 481px){
     .nav_font{
@@ -134,18 +152,6 @@ i{
     .fa-solid.fa-bars{
         font-size: 50px;
         display: inline;
-    }
-    .navSelectionsMenu{
-        display: none;
-    }
-    .fa-solid.fa-bars:hover{
-        /* border-radius: 50%; */
-        transform: rotate(90deg);
-        transition: transform 0.5s;
-    }
-    .fa-solid.fa-bars:hover ~ .navSelectionsMenu{
-        display: inline;
-        background-color: rgb(0, 0, 255);
     }
 }
 </style>

@@ -34,8 +34,10 @@ export default {
 @import url(../assets/fontawesome/fontawesome-free-6.7.2-web/css/all.css);
 .popupMenu{
     display: flex;
+    width: 100%;
+    height: 100%;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     /* padding: 10px 20px; */
     background-color: rgba(245, 245, 245, 0.7);
@@ -44,6 +46,10 @@ export default {
     display: inline;
     justify-content: space-between;
     align-items: center;
+    justify-content: center;
     width: 100%;
+}
+.popup-menu-items>div{
+    margin: 10% auto auto 20%;
 }
 </style>

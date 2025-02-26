@@ -2,6 +2,7 @@
 import axios from "axios";
 import markdownIt from "markdown-it";
 import headTobodyMD from "./headTobodyMD.vue";
+import popupApp from "./popupApp.vue";
 export default {
   data() {
     return {
@@ -27,7 +28,8 @@ export default {
     // }
   },
   components: {
-    headTobodyMD
+    headTobodyMD,
+    popupApp
   },
   mounted() {
   },
@@ -78,7 +80,7 @@ export default {
     </div>
     <!-- 左边内容 -->
 
-    <!-- 右边内容 -->
+    <!-- 中间内容 -->
     <div class="bg-center">
       <div class="bg-center-content">
         <div v-for="(item, index) in tags" :key="index">
@@ -90,7 +92,24 @@ export default {
         </div>
       </div>
     </div>
+    <!-- 中间内容 -->
+
     <!-- 右边内容 -->
+     <div class="bg-right">
+    </div>    
+
+
+
+
+    <!-- 右边内容 -->
+
+    <!-- 弹出框 -->
+    <div class="floatMenu">
+      <popupApp />
+    </div>
+
+
+    <!-- 弹出框 -->
 
   </div>
 </template>
@@ -175,6 +194,24 @@ export default {
 }
 
 /* 中间内容 */
+/* 右边内容 */
+.bg-right {
+  display: inline-block;
+  width: 100%;
+  margin: 30px 20px 0 0px;
+}
+.floatMenu {
+  position: fixed;
+  /* margin: 0px 0px 0px 50%; */
+  width: 80%;
+  height: 100%;
+  background-color: rgba(128, 128, 128, 0.7);
+}
+
+
+/* 右边内容 */
+
+
 @media screen and (max-width: 481px){
     .bg-left-content>div:nth-child(3){
         display: none;
