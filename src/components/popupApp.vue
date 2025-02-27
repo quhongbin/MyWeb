@@ -50,6 +50,7 @@ export default {
     width: 100%;
 }
 .popup-menu-items>div{
-    margin: 10% auto auto 20%;
+    margin: 20% auto auto 20%;
+
 }
 </style>

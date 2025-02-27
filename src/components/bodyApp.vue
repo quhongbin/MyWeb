@@ -1,11 +1,14 @@
 <script>
-import axios from "axios";
-import markdownIt from "markdown-it";
-import headTobodyMD from "./headTobodyMD.vue";
-import popupApp from "./popupApp.vue";
+import axios from "axios"
+import markdownIt from "markdown-it"
+import headTobodyMD from "./headTobodyMD.vue"
+import popupApp from "./popupApp.vue"
+import headApp from "./headApp.vue"
+import EventBus from "./eventBus.vue"
 export default {
   data() {
     return {
+      isVisibleClass: false,
       tempText: {
         name: "瞿红斌",
         age:18,
@@ -15,6 +18,7 @@ export default {
     };
   },
   props: {
+    
     // Markdowncontent: {
     //   type: String,
     //   default: "",
@@ -29,9 +33,15 @@ export default {
   },
   components: {
     headTobodyMD,
-    popupApp
+    popupApp,
+    headApp
   },
   mounted() {
+    // 监听switch-class事件，并执行toggleClass方法
+    EventBus.on("switch-class", this.toggleClass);
+  },
+  beforeUnmount() {
+    EventBus.off("switch-class",);
   },
   methods: {
     handleFileUploaded(newContent, fileName) {
@@ -45,12 +55,17 @@ export default {
       this.getToServer();
       console.log(fileName);
       console.log(this.tags.length);
+      console.log(this.isVisibleClass);
     },
     // axios请求
     getToServer() {
       axios.post("http://localhost:3000/api",this.tempText)
         .then((response) => console.log(response.data))
         .catch((error) => console.log("Error:"+error));
+    },
+    // 切换floatMenu的class样式
+    toggleClass() {
+      this.isVisibleClass = !this.isVisibleClass;
     },
     goToFooter() {
       this.$router.push("/Footer");
@@ -89,6 +104,7 @@ export default {
         </div>
         <div>
           <headTobodyMD @MarkdownContentToBody="handleFileUploaded" />
+          <!-- <button @click="toggleClass">dd</button> -->
         </div>
       </div>
     </div>
@@ -104,8 +120,9 @@ export default {
     <!-- 右边内容 -->
 
     <!-- 弹出框 -->
-    <div class="floatMenu">
-      <popupApp />
+    <div :class="[isVisibleClass ? 'floatMenu' : 'floatMenuDisvisible','floatMenuDisvisible']">
+      <headApp />
+      <popupApp :class="[isVisibleClass ?  'popupMenu' : 'floatMenuDisvisible','floatMenuDisvisible']"></popupApp>
     </div>
 
 
@@ -197,24 +214,51 @@ export default {
 /* 右边内容 */
 .bg-right {
   display: inline-block;
-  width: 100%;
+  width: 15%;
   margin: 30px 20px 0 0px;
 }
-.floatMenu {
-  position: fixed;
-  /* margin: 0px 0px 0px 50%; */
-  width: 80%;
-  height: 100%;
-  background-color: rgba(128, 128, 128, 0.7);
-}
-
 
 /* 右边内容 */
-
-
+.floatMenuDisvisible {
+  display: none;
+}
+.popupMenuDisvisible {
+  display: none;
+}
 @media screen and (max-width: 481px){
-    .bg-left-content>div:nth-child(3){
+    .bg-left{
         display: none;
     }
+    .bg-center {
+      display: inline-block;
+      width: 90%;
+      height: 200px;
+      margin: 10px 0px 0 0px;
+    }
+    .bg-right{
+        display: none;
+    }
+    .floatMenuDisvisible{
+      display: none;
+    }
+    .floatMenu {
+      position:fixed;
+      display: inline;
+      margin: 0px 0px 0px 50%;
+      width: 80%;
+      height: 100%;
+      background-color: rgba(128, 128, 128, 0.7);
+    }
+    .popupMenu {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      /* padding: 10px 20px; */
+      background-color: rgba(245, 245, 245, 0.7);
+    }    
+    
 }
 </style>

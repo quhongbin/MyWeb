@@ -1,11 +1,11 @@
 <script>
 import APlayer from 'aplayer';
 import "aplayer/dist/APlayer.min.css"; // 引入音乐插件的样式
+import EventBus from './eventBus.vue';
 export default {
     data(){
         return{
-            Markdowncontent: "",
-            BarsClass: true,
+            isVisibleClass: false,
             icons:[{
                     name:'Github',
                     icon:'fa-brands fa-github',
@@ -35,15 +35,7 @@ export default {
     
 
     methods: {
-        uploadMarkdown(e){
-            const file = e.target.files[0];
-            if(file){
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                    this.$emit("MarkdownContentToBody", e.target.result);
-                };
-                reader.readAsText(file);
-            };
+        uploadMarkdown(){
         },
         initAplayer(){
             new APlayer({
@@ -54,8 +46,11 @@ export default {
                 
             });
         },
-        changeBarsClass(){
-            this.BarsClass = !this.BarsClass;
+        // 发出switch-class事件,给bodyApp.vue接收
+        toggleClass(){
+            // this.isVisibleClass = !this.isVisibleClass;
+            EventBus.emit("switch-class");
+            // console.log(this.isVisibleClass);
         },
     },
 
@@ -68,7 +63,7 @@ export default {
 </script>
 <template>
     <div class="nav_container">
-        <div class="nav_logo">
+        <div class="nav_logo" >
             <img src="../assets/images/qq头像.jpg" alt="logo" width="50px" height="50px"/>
         </div>
         <div class="nav_font" v-for="icon in icons" :key="icon.name">
@@ -82,7 +77,7 @@ export default {
 
             </div>
             <div class="navSelections">
-                <i class="fa-solid fa-bars"></i>
+                <i @click="toggleClass" class="fa-solid fa-bars"></i>
             </div>
         </div>
     </div>
@@ -128,27 +123,20 @@ i{
     margin:0px 5px 0px 5px;
 }
 .fa-solid.fa-bars{
-    display: inline;
-    height: 10px;
-    transition: height;;
-    transition-duration: 0.5s;
-    /* background-color: #fff; */
-}
-.fa-solid.fa-bars:focus ~ .navSelectionsMenu{
-    display: inline;
-    height: 30px;
-    transform: translate(0px, -10px);
-    transition: transform 0.5s;
-    background-color: rgb(0, 0, 255);
+    display: none;
 }
 /* 切换css样式 */
 .navSelections{
+    display: none;
 } 
 
 @media screen and (max-width: 481px){
     .nav_font{
         display: none;
     }
+    .navSelections{
+        display: inline;
+    } 
     .fa-solid.fa-bars{
         font-size: 50px;
         display: inline;
