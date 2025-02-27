@@ -121,7 +121,7 @@ export default {
 
     <!-- 弹出框 -->
     <div :class="[isVisibleClass ? 'floatMenu' : 'floatMenuDisvisible','floatMenuDisvisible']">
-      <headApp />
+      <headApp style="display: none;"/>
       <popupApp :class="[isVisibleClass ?  'popupMenu' : 'floatMenuDisvisible','floatMenuDisvisible']"></popupApp>
     </div>
 
@@ -132,6 +132,7 @@ export default {
 </template>
 
 <style scoped>
+@import url(../assets/css/animate.css);
 .bg-center-content>::-webkit-scrollbar {
   width: 2px;
   /* 设置滚动条宽度为0 */
@@ -241,13 +242,16 @@ export default {
     .floatMenuDisvisible{
       display: none;
     }
+      
+    }
     .floatMenu {
       position:fixed;
-      display: inline;
+      display: inline-block;
       margin: 0px 0px 0px 50%;
       width: 80%;
       height: 100%;
       background-color: rgba(128, 128, 128, 0.7);
+      animation: RightToLeft 1s ease-in-out;
     }
     .popupMenu {
       display: flex;
@@ -260,5 +264,5 @@ export default {
       background-color: rgba(245, 245, 245, 0.7);
     }    
     
-}
+
 </style>

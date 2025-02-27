@@ -1,0 +1,16 @@
+@keyframes RightToLeft {
+    from{
+        transform: translate(99%, 0);
+    }
+    to{
+        transform: translate(0%, 0);
+    }
+}
+@keyframes LeftToRight {
+    from{
+        transform: translate(0%, 0);
+    }
+    to{
+        transform: translate(99%, 0);
+    }
+}
