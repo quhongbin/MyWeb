@@ -40,7 +40,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     /* padding: 10px 20px; */
-    background-color: rgba(245, 245, 245, 0.7);
+    background-color: rgba(145, 145, 145, 0.8);
 }
 .popup-menu-items{
     display: inline;

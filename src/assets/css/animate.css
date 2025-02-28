@@ -8,7 +8,7 @@
 }
 @keyframes LeftToRight {
     from{
-        transform: translate(0%, 0);
+        transform: translate(-50%, 0);
     }
     to{
         transform: translate(99%, 0);

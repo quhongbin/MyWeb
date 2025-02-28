@@ -120,9 +120,9 @@ export default {
     <!-- 右边内容 -->
 
     <!-- 弹出框 -->
-    <div :class="[isVisibleClass ? 'floatMenu' : 'floatMenuDisvisible','floatMenuDisvisible']">
+    <div :class="[isVisibleClass ? 'floatMenu' : 'floatMenuDisvisible']">
       <headApp style="display: none;"/>
-      <popupApp :class="[isVisibleClass ?  'popupMenu' : 'floatMenuDisvisible','floatMenuDisvisible']"></popupApp>
+      <popupApp :class="[isVisibleClass ?  'popupMenu' : 'popupMenuDisvisible']"></popupApp>
     </div>
 
 
@@ -239,19 +239,36 @@ export default {
     .bg-right{
         display: none;
     }
+    /* 弹出框的消失样式 */
     .floatMenuDisvisible{
-      display: none;
+        position: fixed;
+        display: inline-block;
+        margin: 0px 0px 0px 50%;
+        width: 80%;
+        height: 100%;
+        /* background-color: rgba(128, 128, 128, 0.7); */
+        animation: LeftToRight 1s;
+     }
+    .popupMenuDisvisible {
+        position: fixed;
+        display: inline-block;
+        margin: 0px 0px 0px 50%;
+        width: 80%;
+        height: 100%;
+        /* background-color: rgba(128, 128, 128, 0.7); */
+        animation: LeftToRight 1s;
     }
-      
-    }
+    /* 弹出框的消失样式 */
+
+    /* 弹出框的出现样式 */
     .floatMenu {
       position:fixed;
       display: inline-block;
       margin: 0px 0px 0px 50%;
       width: 80%;
       height: 100%;
-      background-color: rgba(128, 128, 128, 0.7);
-      animation: RightToLeft 1s ease-in-out;
+      /* background-color: rgba(204, 31, 31, 0.7); */
+      animation: RightToLeft 0.5s;
     }
     .popupMenu {
       display: flex;
@@ -261,8 +278,10 @@ export default {
       justify-content: flex-start;
       align-items: center;
       /* padding: 10px 20px; */
-      background-color: rgba(245, 245, 245, 0.7);
+      /* background-color: rgba(25, 255, 125, 0.7); */
+      animation: RightToLeft 1s;
     }    
-    
+    /* 弹出框的出现样式 */
+  }    
 
 </style>

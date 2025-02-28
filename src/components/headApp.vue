@@ -141,5 +141,10 @@ i{
         font-size: 50px;
         display: inline;
     }
+    .fa-solid.fa-bars:active{
+        color: red;
+        transform: rotate(90deg);
+        transition: transform 0.5s;
+    }
 }
 </style>
