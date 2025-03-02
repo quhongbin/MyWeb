@@ -5,9 +5,13 @@ import headTobodyMD from "./headTobodyMD.vue"
 import popupApp from "./popupApp.vue"
 import headApp from "./headApp.vue"
 import EventBus from "./eventBus.vue"
+import { ref } from "vue"
+
+const markdowncontent=ref({})
 export default {
   data() {
     return {
+      // markdowncontent:{},
       isVisibleClass: false,
       tempText: {
         name: "瞿红斌",
@@ -46,20 +50,28 @@ export default {
   methods: {
     handleFileUploaded(newContent, fileName) {
       const md = new markdownIt();
-      const newCC = md.render(newContent);
+      const fileContents = md.render(newContent);
+      this.markdowncontent = newContent;
       // 增加一个div标签，用于显示新的内容
-      const fileContents = '<div>' + newCC + '</div>';
       // 将新的内容添加到tags数组中，并以文件名形式的变量名存储
       this.tags.push(fileContents);
       // this.$emit("addedContent");
       this.getToServer();
       console.log(fileName);
+      console.log(markdowncontent);
       console.log(this.tags.length);
-      console.log(this.isVisibleClass);
     },
     // axios请求
     getToServer() {
-      axios.post("http://localhost:3000/api",this.tempText)
+      axios.post("http://localhost:5000/api",
+      {
+        content:this.markdowncontent
+      },{
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+      )
         .then((response) => console.log(response.data))
         .catch((error) => console.log("Error:"+error));
     },
