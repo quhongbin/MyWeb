@@ -11,6 +11,14 @@
         transform: translate(-50%, 0);
     }
     to{
-        transform: translate(99%, 0);
+        transform: translate(50%, 0);
+    }
+}
+@keyframes Turn90deg {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(90deg);
     }
 }

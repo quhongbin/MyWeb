@@ -209,6 +209,11 @@ export default {
   border-radius: 20px;
   overflow: scroll;
   text-overflow: clip;
+  transition-duration: 1s;
+}
+.bg-center-content>div:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s;
 }
 
 /* 中间内容 */
@@ -232,12 +237,21 @@ export default {
     }
     .bg-center {
       display: inline-block;
-      width: 90%;
+      width: 100%;
       height: 200px;
       margin: 10px 0px 0 0px;
     }
     .bg-right{
         display: none;
+    }
+    .bg-center-content>div {
+      height: 200px;
+      background-color: beige;
+      margin: 5px 10px 10px 10px;
+      padding: 0px 10px 0px 10px;
+      border-radius: 20px;
+      overflow: scroll;
+      text-overflow: clip;
     }
     /* 弹出框的消失样式 */
     .floatMenuDisvisible{

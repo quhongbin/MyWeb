@@ -48,7 +48,7 @@ export default {
         },
         // 发出switch-class事件,给bodyApp.vue接收
         toggleClass(){
-            // this.isVisibleClass = !this.isVisibleClass;
+            this.isVisibleClass = !this.isVisibleClass;
             EventBus.emit("switch-class");
             // console.log(this.isVisibleClass);
         },
@@ -72,12 +72,12 @@ export default {
                 {{ icon.name }}
             </div>
         </div>
-        <div class="nav__menu">
+        <div class="nav_menu">
             <div id="aplayer">
 
             </div>
             <div class="navSelections">
-                <i @click="toggleClass" class="fa-solid fa-bars"></i>
+                <i @click="toggleClass" :class="[isVisibleClass ? 'fa-solid fa-bars-staggered' : 'fa-solid fa-bars']"></i>
             </div>
         </div>
     </div>
@@ -85,6 +85,8 @@ export default {
 
 <style scoped>
 @import url(../assets/fontawesome/fontawesome-free-6.7.2-web/css/all.css);
+@import url(../assets/css/animate.css);
+/* @import url(../../node_modules/font-awesome-animation/css/font-awesome-animation.css); */
 .nav_container{
     display: flex;
     justify-content: space-around;
@@ -96,13 +98,24 @@ export default {
     border-radius: 20%;
     border: 3px solid gray;
 }
+.nav_logo{
+    display: inline;
+    transition-duration: 1s;
+}
+.nav_logo:hover{
+    transform: scale(1.3);
+    transition: transform 0.5s;
+}
 .nav_font{
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
     align-items: center;
-    
     /* width: 200px; */
+}
+.nav_menu{
+    display: inline;
+    width: 100px;
 }
 .nav_font div{
     margin: 0px 5px 0px 5px;
@@ -141,10 +154,9 @@ i{
         font-size: 50px;
         display: inline;
     }
-    .fa-solid.fa-bars:active{
-        color: red;
-        transform: rotate(90deg);
-        transition: transform 0.5s;
+    .fa-solid.fa-bars-staggered{
+        display: inline;
+        font-size: 50px;
     }
 }
 </style>
