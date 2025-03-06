@@ -265,7 +265,11 @@ export default {
       overflow: scroll;
       text-overflow: clip;
     }
-    /* 弹出框的消失样式 */
+    .bg-center-content>div:hover {
+      transform: none;
+      transition: transform 0.5s;
+    }
+        /* 弹出框的消失样式 */
     .floatMenuDisvisible{
         position: fixed;
         display: inline-block;

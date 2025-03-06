@@ -4,19 +4,24 @@ export default {
         return {
             icons:[
                 {
-                    icon: "fa-brands fa-github",
-                    name: "Github",
+                name: 'Github',
+                icon: 'fa-brands fa-github',
+                url:'https://github.com/quhongbin',
                 },
                 {
-                    icon: "fa-brands fa-bilibili",
-                    name: "Bilibili",
+                name: 'Bilibili',
+                icon: 'fa-brands fa-bilibili',
+                url:'https://space.bilibili.com/521816677',
                 },
                 {
-                    icon: "fa-solid fa-envelope",
-                    name: "邮箱",
+                name: 'Email',
+                icon: 'fa-solid fa-envelope',
+                url:'mailto:2818777520@qq.com',
                 },
             ],
         };
+    },
+    components:{
     },
 };
 </script>
@@ -25,9 +30,13 @@ export default {
         <div v-for="(item,index) in icons" :key="index" class="popup-menu-items">
             <div>
                 <i :class="item.icon"></i>
-                {{ item.name }}
+                <a :href="item.url">{{ item.name }}</a>
             </div>
         </div>
+        <span>
+            <p>备案号：蜀ICP备2024111078号-1</p>
+            <p>版权所有 &copy; 2023 quhongbin</p>
+        </span>
     </div>
 </template>
 <style scoped>
@@ -40,7 +49,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
     /* padding: 10px 20px; */
-    background-color: rgba(193, 193, 193, 0.9);
+    background-color: rgba(255, 255, 255, 0.9);
 }
 .popup-menu-items{
     display: inline;
@@ -51,6 +60,21 @@ export default {
 }
 .popup-menu-items>div{
     margin: 20% auto auto 20%;
-
+}
+.popup-menu-items a{
+    color: black;
+    text-decoration: none;
+}
+.popup-menu-items a:active{
+    color: red;
+    text-decoration:line-through;
+}
+@media screen and (max-width: 481px) {
+    span {
+        display: inline;
+        font-size: 8px;
+        margin: 100% 50% auto auto;
+    }
+    
 }
 </style>
